@@ -1,0 +1,8 @@
+RewriteEngine On
+
+# Blokir akses langsung ke folder sensitif dari root
+RewriteRule ^(app|config|database|uploads)/ - [F,L]
+
+# Jika request bukan ke public/, arahkan ke public/
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]

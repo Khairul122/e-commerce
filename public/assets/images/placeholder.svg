@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#FBF3EA"/>
+  <circle cx="200" cy="160" r="60" fill="#D98324" opacity="0.3"/>
+  <path d="M120 280 Q200 220 280 280 L280 320 L120 320 Z" fill="#7A2E1D" opacity="0.25"/>
+  <text x="200" y="360" font-family="sans-serif" font-size="18" fill="#7A2E1D" text-anchor="middle">UKM ARC</text>
+</svg>

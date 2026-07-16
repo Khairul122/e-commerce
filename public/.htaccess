@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Izinkan akses langsung ke file/folder statis yang benar-benar ada (assets, uploads.php, dll)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Sisanya diarahkan ke front controller
+RewriteRule ^(.*)$ index.php [QSA,L]
