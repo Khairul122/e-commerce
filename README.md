@@ -1,5 +1,7 @@
 # Sistem Informasi E-Commerce Dapoer ARC (UKM ARC)
 
+![Hero Banner](public/assets/images/hero.png)
+
 Website e-commerce premium single-vendor untuk UKM kuliner **Dapoer ARC** (Padang, Sumatera Barat) — dibangun menggunakan arsitektur bersih **PHP Native (MVC)**, **MySQL**, dan **Tailwind CSS (CDN)** dengan sentuhan desain modern *Glassmorphism*.
 
 ---
