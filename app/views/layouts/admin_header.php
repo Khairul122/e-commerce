@@ -23,6 +23,7 @@ $__user = $_SESSION['user'] ?? null;
     },
   };
 </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
   body { font-family: 'Poppins', 'Inter', sans-serif; background-color: #FBF3EA; }

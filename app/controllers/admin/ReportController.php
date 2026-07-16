@@ -15,14 +15,35 @@ class ReportController extends Controller
 
     private function resolveRange(): array
     {
-        $from = $this->input('from') ?: date('Y-m-d', strtotime('-30 days'));
-        $to = $this->input('to') ?: date('Y-m-d');
-        return [$from, $to];
+        $type = $this->input('type') ?: 'custom';
+        $dailyDate = $this->input('daily_date') ?: date('Y-m-d');
+        $monthlyMonth = $this->input('monthly_month') ?: date('Y-m');
+        $yearlyYear = $this->input('yearly_year') ?: date('Y');
+
+        $from = date('Y-m-d', strtotime('-30 days'));
+        $to = date('Y-m-d');
+
+        if ($type === 'daily') {
+            $from = $dailyDate;
+            $to = $dailyDate;
+        } elseif ($type === 'monthly') {
+            $from = $monthlyMonth . '-01';
+            $to = date('Y-m-t', strtotime($from));
+        } elseif ($type === 'yearly') {
+            $from = $yearlyYear . '-01-01';
+            $to = $yearlyYear . '-12-31';
+        } else {
+            // custom
+            $from = $this->input('from') ?: date('Y-m-d', strtotime('-30 days'));
+            $to = $this->input('to') ?: date('Y-m-d');
+        }
+
+        return [$from, $to, $type, $dailyDate, $monthlyMonth, $yearlyYear];
     }
 
     public function index(): void
     {
-        [$from, $to] = $this->resolveRange();
+        [$from, $to, $filterType, $dailyDate, $monthlyMonth, $yearlyYear] = $this->resolveRange();
         $orders = (new Order())->getInRange($from, $to);
 
         $totalOrders = count($orders);
@@ -40,6 +61,10 @@ class ReportController extends Controller
             'orders' => $orders,
             'from' => $from,
             'to' => $to,
+            'filterType' => $filterType,
+            'dailyDate' => $dailyDate,
+            'monthlyMonth' => $monthlyMonth,
+            'yearlyYear' => $yearlyYear,
             'totalOrders' => $totalOrders,
             'totalRevenue' => $totalRevenue,
             'chartLabels' => array_keys($chartData),
@@ -74,7 +99,7 @@ class ReportController extends Controller
 
     public function printView(): void
     {
-        [$from, $to] = $this->resolveRange();
+        [$from, $to, $filterType] = $this->resolveRange();
         $orders = (new Order())->getInRange($from, $to);
         $totalRevenue = array_sum(array_map(fn($o) => $o['status'] === 'selesai' ? (float) $o['total'] : 0, $orders));
         $settings = (new Setting())->get();
@@ -83,6 +108,7 @@ class ReportController extends Controller
             'orders' => $orders,
             'from' => $from,
             'to' => $to,
+            'filterType' => $filterType,
             'totalRevenue' => $totalRevenue,
             'settings' => $settings,
         ]);
