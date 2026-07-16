@@ -150,36 +150,4 @@ class AuthController extends Controller
         $this->flash('success', 'Profil berhasil diperbarui.');
         $this->redirect('/profile');
     }
-
-    public function submitTestimonial(): void
-    {
-        $this->requireLogin();
-        $this->verifyCsrf();
-
-        $message = $this->input('message');
-        $rating = (int) $this->input('rating', 5);
-
-        if (empty($message)) {
-            $this->flash('error', 'Pesan testimoni tidak boleh kosong.');
-            $this->redirect('/profile');
-        }
-
-        if ($rating < 1 || $rating > 5) {
-            $rating = 5;
-        }
-
-        $user = $this->userModel->find($this->currentUser()['id']);
-
-        $testimonialModel = new \App\Models\Testimonial();
-        $testimonialModel->create([
-            'customer_name' => $user['name'],
-            'message' => $message,
-            'rating' => $rating,
-            'photo' => $user['photo'] ?? null,
-            'is_shown' => 1
-        ]);
-
-        $this->flash('success', 'Testimoni Anda berhasil dikirim dan ditampilkan di beranda! Terima kasih.');
-        $this->redirect('/profile');
-    }
 }

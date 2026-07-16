@@ -39,6 +39,11 @@ $__settings = $__settings ?? (new Setting())->get();
           </a>
         </li>
         <li>
+          <a href="<?= BASE_URL ?>/testimoni" class="inline-flex items-center gap-2 hover:text-secondary hover:translate-x-1.5 transition-all duration-300">
+            <i class="fa-solid fa-chevron-right text-[10px] opacity-40"></i> Testimoni
+          </a>
+        </li>
+        <li>
           <a href="<?= BASE_URL ?>/register" class="inline-flex items-center gap-2 hover:text-secondary hover:translate-x-1.5 transition-all duration-300">
             <i class="fa-solid fa-chevron-right text-[10px] opacity-40"></i> Daftar Akun
           </a>

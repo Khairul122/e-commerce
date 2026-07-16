@@ -28,4 +28,51 @@ class HomeController extends Controller
             'settings' => $settings,
         ]);
     }
+
+    public function testimonial(): void
+    {
+        $testimonials = (new Testimonial())->all('created_at DESC');
+        $settings = (new Setting())->get();
+
+        $this->view('landing/testimonial', [
+            'pageTitle' => 'Testimoni',
+            'testimonials' => $testimonials,
+            'settings' => $settings,
+            'csrf' => $this->csrfToken(),
+            'flash' => $this->getFlash(),
+        ]);
+    }
+
+    public function submitTestimonial(): void
+    {
+        $this->requireLogin();
+        $this->verifyCsrf();
+
+        $message = $this->input('message');
+        $rating = (int) $this->input('rating', 5);
+
+        if (empty($message)) {
+            $this->flash('error', 'Pesan testimoni tidak boleh kosong.');
+            $this->redirect('/testimoni');
+        }
+
+        if ($rating < 1 || $rating > 5) {
+            $rating = 5;
+        }
+
+        $userModel = new \App\Models\User();
+        $user = $userModel->find($this->currentUser()['id']);
+
+        $testimonialModel = new Testimonial();
+        $testimonialModel->create([
+            'customer_name' => $user['name'],
+            'message' => $message,
+            'rating' => $rating,
+            'photo' => $user['photo'] ?? null,
+            'is_shown' => 1
+        ]);
+
+        $this->flash('success', 'Testimoni Anda berhasil dikirim! Terima kasih atas dukungan Anda.');
+        $this->redirect('/testimoni');
+    }
 }

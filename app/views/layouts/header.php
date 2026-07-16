@@ -145,6 +145,7 @@ $__pageTitle = $pageTitle ?? $__settings['site_name'];
       <div class="hidden md:flex items-center gap-8 font-semibold text-sm tracking-wide">
         <a href="<?= BASE_URL ?>/" class="nav-link text-primary hover:text-secondary transition duration-300">Beranda</a>
         <a href="<?= BASE_URL ?>/produk" class="nav-link text-primary hover:text-secondary transition duration-300">Katalog</a>
+        <a href="<?= BASE_URL ?>/testimoni" class="nav-link text-primary hover:text-secondary transition duration-300">Testimoni</a>
         <?php if ($__user): ?>
           <a href="<?= BASE_URL ?>/pesanan" class="nav-link text-primary hover:text-secondary transition duration-300">Pesanan Saya</a>
         <?php endif; ?>

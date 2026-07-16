@@ -37,9 +37,8 @@ $router->post('/login', 'AuthController@login');
 $router->get('/logout', 'AuthController@logout');
 $router->get('/profile', 'AuthController@showProfile', ['auth']);
 $router->post('/profile', 'AuthController@updateProfile', ['auth']);
-$router->post('/profile/testimonial', 'AuthController@submitTestimonial', ['auth']);
-
-
+$router->get('/testimoni', 'HomeController@testimonial');
+$router->post('/testimoni', 'HomeController@submitTestimonial', ['auth']);
 // ===== Public: Katalog =====
 $router->get('/produk', 'ProductController@index');
 $router->get('/produk/{slug}', 'ProductController@show');
