@@ -87,6 +87,11 @@ $router->post('/admin/pengiriman/tambah', 'Admin\\ShippingController@store', ['a
 $router->post('/admin/pengiriman/{id}/edit', 'Admin\\ShippingController@update', ['admin']);
 $router->post('/admin/pengiriman/{id}/hapus', 'Admin\\ShippingController@destroy', ['admin']);
 
+$router->get('/admin/pembeli', 'Admin\\CustomerController@index', ['admin']);
+$router->post('/admin/pembeli/tambah', 'Admin\\CustomerController@store', ['admin']);
+$router->post('/admin/pembeli/{id}/edit', 'Admin\\CustomerController@update', ['admin']);
+$router->post('/admin/pembeli/{id}/hapus', 'Admin\\CustomerController@destroy', ['admin']);
+
 $router->get('/admin/banner', 'Admin\\BannerController@index', ['admin']);
 $router->post('/admin/banner/tambah', 'Admin\\BannerController@store', ['admin']);
 $router->post('/admin/banner/{id}/edit', 'Admin\\BannerController@update', ['admin']);

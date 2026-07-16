@@ -82,6 +82,11 @@ $isKontenActive = str_contains($__currentPath, '/admin/banner') || str_contains(
       </div>
     </details>
 
+    <!-- Manajemen Pembeli -->
+    <a href="<?= BASE_URL ?>/admin/pembeli" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition <?= __navActive('/admin/pembeli', $__currentPath) ?>">
+      <i class="fa-solid fa-users w-4"></i> Pelanggan / Pembeli
+    </a>
+
     <!-- Laporan -->
     <a href="<?= BASE_URL ?>/admin/laporan" class="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition <?= __navActive('/admin/laporan', $__currentPath) ?>">
       <i class="fa-solid fa-chart-line w-4"></i> Laporan
